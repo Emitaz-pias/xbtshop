@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Stack, Paper, Divider } from "@mui/material";
+import { Box, Typography, Stack, Paper } from "@mui/material";
 import { motion } from "framer-motion";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import HandshakeIcon from "@mui/icons-material/Handshake";
