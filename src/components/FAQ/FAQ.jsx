@@ -155,7 +155,7 @@ const FAQ = () => {
                     sx={{
                       fontWeight: 600, // semibold
                       fontSize: '1.1rem',
-                      color: isExpanded ? '#27ae60' : '#192a56', // Change color on expand
+                      color: isExpanded ? '#27ae60' : '#192a56',
                       transition: 'color 0.2s',
                     }}
                   >

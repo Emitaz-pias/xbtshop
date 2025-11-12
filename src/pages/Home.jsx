@@ -14,6 +14,9 @@ import FloatingCardSection from '../components/FloatingCardSection/FloatingCardS
 import OurSolutions from '../components/OurSolutions/OurSolutions';
 import Why1xBet from '../components/Why1xBet/Why1xBet';
 import FAQ from '../components/FAQ/FAQ';
+import BusinessSection from '../components/BusinessSection/BusinessSection';
+import AgentFormSection from '../components/AgentFormSection/AgentFormSection';
+import AgentIntroSection from '../components/AgentIntroSection/AgentIntroSection';
 
 
 
@@ -32,6 +35,9 @@ const Home = () => {
       <OurSolutions/>
       <Why1xBet/>
       <FAQ/>
+      <BusinessSection/>
+      <AgentFormSection/>
+      <AgentIntroSection/>
       <Footer />
     
     </>
