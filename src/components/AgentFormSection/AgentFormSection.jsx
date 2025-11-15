@@ -1,305 +1,125 @@
-// src/components/AgentFormSection.jsx
 import React from "react";
-import {
-  Box,
-  Grid,
-  TextField,
-  MenuItem,
-  Button,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import { motion } from "framer-motion";
+import { Box, TextField, Button, MenuItem, Typography } from "@mui/material";
 
-const AgentFormSection = () => {
-  const isSmall = useMediaQuery("(max-width:900px)");
-
+export default function AgentFormSection() {
   return (
     <Box
       sx={{
-        background: "linear-gradient(135deg, #052659 0%, #0b2a59 100%)",
-        py: { xs: 8, md: 12 },
-        px: { xs: 3, md: 8 },
+        width: "100%",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        py: 6,
+        backgroundColor: "#0B1B33",
       }}
     >
-      <Grid
-        container
-        spacing={6}
-        alignItems="center"
-        justifyContent="center"
-        maxWidth="1200px"
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: 650,
+          backgroundColor: "white",
+          borderRadius: 2,
+          p: 4,
+        }}
       >
-        {/* Left - Form */}
-        <Grid item xs={12} md={6}>
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Box
-              sx={{
-                background:
-                  "rgba(255, 255, 255, 0.08)",
-                borderRadius: "16px",
-                backdropFilter: "blur(10px)",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-                p: { xs: 4, md: 5 },
-                border: "1px solid rgba(255,255,255,0.15)",
-              }}
-            >
-              <Typography
-                variant="h4"
-                textAlign="center"
-                mb={3}
-                fontWeight={700}
-                color="#6CD44E"
-              >
-                Become a 1xBet Agent
-              </Typography>
+        <Typography sx={{ fontSize: 24, fontWeight: 700, mb: 3 }}>
+          Become an Agent
+        </Typography>
 
-              <Typography
-                variant="body1"
-                textAlign="center"
-                color="rgba(255,255,255,0.8)"
-                mb={4}
-              >
-                Fill out the form below to start your partnership journey with 1xBet.
-              </Typography>
+        {/* Row 1: Country + Region */}
+        <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+          <TextField select fullWidth size="small" label="Country">
+            <MenuItem value="bd">Bangladesh</MenuItem>
+            <MenuItem value="in">India</MenuItem>
+            <MenuItem value="pk">Pakistan</MenuItem>
+          </TextField>
 
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    select
-                    label="Country"
-                    fullWidth
-                    size="small"
-                    SelectProps={{ displayEmpty: true }}
-                    sx={{
-                      "& .MuiInputBase-root": { color: "#fff" },
-                      "& .MuiInputLabel-root": { color: "#ccc" },
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#6CD44E",
-                      },
-                    }}
-                  >
-                    <MenuItem value="">Select Country</MenuItem>
-                    <MenuItem value="Bangladesh">Bangladesh</MenuItem>
-                    <MenuItem value="India">India</MenuItem>
-                    <MenuItem value="Pakistan">Pakistan</MenuItem>
-                  </TextField>
-                </Grid>
+          <TextField select fullWidth size="small" label="Region">
+            <MenuItem value="dhaka">Dhaka</MenuItem>
+            <MenuItem value="chittagong">Chittagong</MenuItem>
+          </TextField>
+        </Box>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    select
-                    label="Region"
-                    fullWidth
-                    size="small"
-                    SelectProps={{ displayEmpty: true }}
-                    sx={{
-                      "& .MuiInputBase-root": { color: "#fff" },
-                      "& .MuiInputLabel-root": { color: "#ccc" },
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#6CD44E",
-                      },
-                    }}
-                  >
-                    <MenuItem value="">Select Region</MenuItem>
-                    <MenuItem value="Dhaka">Dhaka</MenuItem>
-                    <MenuItem value="Chittagong">Chittagong</MenuItem>
-                    <MenuItem value="Sylhet">Sylhet</MenuItem>
-                  </TextField>
-                </Grid>
+        {/* Row 2: City + First Name */}
+        <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+          <TextField select fullWidth size="small" label="City">
+            <MenuItem value="dhaka_city">Dhaka City</MenuItem>
+            <MenuItem value="ctg_city">Chittagong City</MenuItem>
+          </TextField>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    label="City"
-                    fullWidth
-                    size="small"
-                    InputLabelProps={{ style: { color: "#ccc" } }}
-                    InputProps={{ style: { color: "#fff" } }}
-                    sx={{
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#6CD44E",
-                      },
-                    }}
-                  />
-                </Grid>
+          <TextField fullWidth size="small" label="First Name" />
+        </Box>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    label="Full name"
-                    fullWidth
-                    size="small"
-                    InputLabelProps={{ style: { color: "#ccc" } }}
-                    InputProps={{ style: { color: "#fff" } }}
-                    sx={{
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#6CD44E",
-                      },
-                    }}
-                  />
-                </Grid>
+        {/* Row 3: Email + Phone */}
+        <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+          <TextField fullWidth size="small" label="Email" type="email" />
 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    label="Email address"
-                    type="email"
-                    fullWidth
-                    size="small"
-                    InputLabelProps={{ style: { color: "#ccc" } }}
-                    InputProps={{ style: { color: "#fff" } }}
-                    sx={{
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#6CD44E",
-                      },
-                    }}
-                  />
-                </Grid>
+          <Box sx={{ display: "flex", gap: 1, width: "50%" }}>
+            <TextField select fullWidth size="small" label="Code">
+              <MenuItem value="+880">+880</MenuItem>
+              <MenuItem value="+91">+91</MenuItem>
+            </TextField>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    label="Phone number"
-                    fullWidth
-                    size="small"
-                    placeholder="+880"
-                    InputLabelProps={{ style: { color: "#ccc" } }}
-                    InputProps={{ style: { color: "#fff" } }}
-                    sx={{
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#6CD44E",
-                      },
-                    }}
-                  />
-                </Grid>
+            <TextField fullWidth size="small" label="Phone" />
+          </Box>
+        </Box>
 
-                <Grid item xs={12}>
-                  <TextField
-                    select
-                    label="Preferred contact method"
-                    fullWidth
-                    size="small"
-                    SelectProps={{ displayEmpty: true }}
-                    sx={{
-                      "& .MuiInputBase-root": { color: "#fff" },
-                      "& .MuiInputLabel-root": { color: "#ccc" },
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#6CD44E",
-                      },
-                    }}
-                  >
-                    <MenuItem value="email">E-mail</MenuItem>
-                    <MenuItem value="phone">Phone</MenuItem>
-                    <MenuItem value="telegram">Telegram</MenuItem>
-                  </TextField>
-                </Grid>
-
-                <Grid item xs={12}>
-                  <TextField
-                    label="Your message"
-                    multiline
-                    rows={3}
-                    fullWidth
-                    size="small"
-                    InputLabelProps={{ style: { color: "#ccc" } }}
-                    InputProps={{ style: { color: "#fff" } }}
-                    sx={{
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#6CD44E",
-                      },
-                    }}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Box
-                    sx={{
-                      backgroundColor: "rgba(255,255,255,0.1)",
-                      borderRadius: "8px",
-                      height: "78px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#bbb",
-                      fontSize: "14px",
-                    }}
-                  >
-                    reCAPTCHA placeholder
-                  </Box>
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    sx={{
-                      backgroundColor: "#6CD44E",
-                      color: "#000",
-                      fontWeight: 700,
-                      borderRadius: "10px",
-                      py: 1.4,
-                      fontSize: "1rem",
-                      letterSpacing: "0.5px",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        backgroundColor: "#5ac13e",
-                        transform: "translateY(-2px)",
-                      },
-                    }}
-                  >
-                    SEND
-                  </Button>
-                </Grid>
-              </Grid>
-            </Box>
-          </motion.div>
-        </Grid>
-
-        {/* Right - Contact Info */}
-        <Grid
-          item
-          xs={12}
-          md={6}
-          textAlign={isSmall ? "center" : "left"}
-          sx={{ color: "rgba(255,255,255,0.9)" }}
+        {/* Row 4: Method of Contact (Full width) */}
+        <TextField
+          select
+          fullWidth
+          size="small"
+          label="Method of Contact"
+          sx={{ mb: 2 }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <Typography variant="h4" mb={3} fontWeight={700} color="#6CD44E">
-              Contact Information
-            </Typography>
-            <Typography variant="body1" mb={1.5}>
-              <strong>Web:</strong> 1xbet.com
-            </Typography>
-            <Typography variant="body1" mb={1.5}>
-              <strong>E-mail:</strong> retail@1xbet-team.com
-            </Typography>
-            <Typography variant="body1" mb={1.5}>
-              <strong>Telegram:</strong> @Retail_team_Main
-            </Typography>
+          <MenuItem value="email">Email</MenuItem>
+          <MenuItem value="phone">Phone</MenuItem>
+          <MenuItem value="telegram">Telegram</MenuItem>
+        </TextField>
 
-            <Typography
-              variant="body2"
-              mt={4}
-              color="rgba(255,255,255,0.7)"
-              sx={{ maxWidth: "400px" }}
-            >
-              Our team will review your request and get back to you shortly.
-              Join our growing network of agents and enjoy exclusive benefits.
-            </Typography>
-          </motion.div>
-        </Grid>
-      </Grid>
+        {/* Row 5: Your Message */}
+        <TextField
+          fullWidth
+          size="small"
+          label="Your Message"
+          multiline
+          rows={4}
+          sx={{ mb: 3 }}
+        />
+
+        {/* reCAPTCHA Placeholder */}
+        <Box
+          sx={{
+            width: "100%",
+            height: 78,
+            backgroundColor: "#F9F9F9",
+            border: "1px solid #E0E0E0",
+            borderRadius: 1,
+            mb: 3,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: 14,
+            color: "#555",
+          }}
+        >
+          reCAPTCHA placeholder
+        </Box>
+
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{
+            backgroundColor: "#00A046",
+            fontWeight: 700,
+            textTransform: "none",
+            fontSize: 17,
+            py: 1.2,
+            "&:hover": { backgroundColor: "#00853A" },
+          }}
+        >
+          SEND
+        </Button>
+      </Box>
     </Box>
   );
-};
-
-export default AgentFormSection;
+}
