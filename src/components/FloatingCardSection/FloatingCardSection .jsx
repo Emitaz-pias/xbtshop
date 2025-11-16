@@ -20,6 +20,7 @@ const soccerBallMove = keyframes`
 const FloatingCardSection = () => {
   return (
     <Box
+   
       sx={{
         bgcolor: '#8EDD5B',
         display: 'flex',
@@ -29,7 +30,7 @@ const FloatingCardSection = () => {
         py: { xs: 4, md: 6 },
         flexWrap: 'wrap',
         position: 'relative',
-        overflow: 'hidden',
+        overflow: 'hidden',      
       }}
     >
       {/* Left Content */}
@@ -59,7 +60,7 @@ const FloatingCardSection = () => {
         sx={{
           position: 'relative',
           mt: { xs: 4, md: 0 },
-          animation: `${float} 3s ease-in-out infinite`,
+          animation: `${float} 3s ease-in-out infinite`,         
         }}
       >
         <Box

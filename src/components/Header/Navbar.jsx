@@ -67,11 +67,12 @@ const Navbar = () => {
 
   return (
     <AppBar
-      position="static"
+      position="static"        
       sx={{
         backgroundColor: "#113264",
         boxShadow: "none",
-        py: 1,
+        py: 1,       
+        
       }}
     >
       <Toolbar
@@ -81,15 +82,17 @@ const Navbar = () => {
           alignItems: "center",
         }}
       >
-        <Box component="img" src={logo} alt="logo" sx={{ height: 40 }} />
+        <Box component="img" src={logo} alt="logo" sx={{ height:20 }} />
 
         {/* Desktop Menu */}
         <Stack
+        
           direction="row"
           spacing={4}
           sx={{
             alignItems: "center",
             display: { xs: "none", md: "flex" },
+          
           }}
         >
           {menuItems.map((item, index) => (

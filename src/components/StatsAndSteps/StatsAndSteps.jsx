@@ -21,7 +21,7 @@ const steps = [
 
 const StatsAndSteps = () => {
   return (
-    <Box sx={{ position: "relative", zIndex: 3, mt: { xs: -8, md: -12 } }}>
+    <Box  sx={{ position: "relative",zIndex: 3, mt: { xs: -8, md: -12 } }}>
       {/* Overlapping White Box */}
       <Paper
         elevation={3}

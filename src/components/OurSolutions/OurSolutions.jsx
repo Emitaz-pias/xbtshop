@@ -1,4 +1,3 @@
-// src/components/OurSolutions.jsx
 import React, { useState } from "react";
 import { Box, Typography, Grid, Button } from "@mui/material";
 import { PhoneAndroid, PointOfSale, Storefront } from "@mui/icons-material";
@@ -40,7 +39,7 @@ const OurSolutions = () => {
       : content;
 
   return (
-    <Box sx={{ backgroundColor: "#f5f7fa", py: 8, px: { xs: 2, md: 10 } }}>
+    <Box sx={{ backgroundColor: "#f5f7fa",py: 8, px: { xs: 2, md: 10 } }}>
       <Typography
         variant="h4"
         sx={{
@@ -61,17 +60,22 @@ const OurSolutions = () => {
           flexWrap: { xs: "wrap", md: "nowrap" },
         }}
       >
-        {/* LEFT MENU */}
+        {/* LEFT MENU (Mobile: Single Row, Desktop: Vertical Column) */}
         <Grid
           item
-          xs={12}
-          md={3}
+          xs={12} // Mobile: Full width
+          md={4} // Desktop Fix: Increased width for 'BETSHOP' text to show completely
           sx={{
             display: "flex",
+            // Mobile: Row | Desktop: Column
             flexDirection: { xs: "row", md: "column" },
-            justifyContent: { xs: "center", md: "flex-start" },
+            // Mobile Fix: Use space-between to evenly distribute 3 items
+            justifyContent: { xs: "space-between", md: "flex-start" },
             alignItems: { xs: "center", md: "flex-start" },
-            gap: 3,
+            // Mobile Fix: Force nowrap to keep items in one row and remove horizontal spacing/gap
+            flexWrap: { xs: 'nowrap', md: 'wrap' },
+            gap: { xs: 0, md: 3 }, // Remove gap on mobile, keep it on desktop
+            pb: { xs: 4, md: 0 }, // Add bottom padding on mobile to separate menu from content
           }}
         >
           {Object.keys(tabData).map((tab) => {
@@ -79,18 +83,28 @@ const OurSolutions = () => {
             return (
               <Box
                 key={tab}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => {
+                  setActiveTab(tab);
+                  // Reset sub-tab selection when changing main tabs
+                  if (tab !== 'betshop') {
+                    setActiveBetshopSub("Self-service terminal");
+                  }
+                }}
                 sx={{
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  gap: 1.2,
-                  px: 2,
+                  gap: { xs: 0.5, md: 1.2 }, // Reduced gap on mobile
+                  px: { xs: 1, md: 2 }, // Reduced horizontal padding on mobile
                   py: 1,
                   borderRadius: "6px",
                   transition: "all 0.3s ease",
                   backgroundColor: active ? "#e7f9df" : "transparent",
                   "&:hover": { backgroundColor: "#e7f9df" },
+                  
+                  // Mobile Fix: Allocate proportional space to each button
+                  minWidth: { xs: '32%', md: 'auto' },
+                  maxWidth: { xs: '33.33%', md: 'auto' },
                 }}
               >
                 <Box
@@ -107,7 +121,9 @@ const OurSolutions = () => {
                   sx={{
                     fontWeight: 600,
                     color: active ? "#82d141" : "#0b2447",
-                    fontSize: 14,
+                    // Mobile Fix: Slightly smaller font size on extra small screens
+                    fontSize: { xs: '12px', sm: '14px' },
+                    whiteSpace: 'nowrap', // Ensure text stays on one line
                   }}
                 >
                   {tabData[tab].title}
@@ -117,8 +133,8 @@ const OurSolutions = () => {
           })}
         </Grid>
 
-        {/* RIGHT CONTENT */}
-        <Grid item xs={12} md={9}>
+        {/* RIGHT CONTENT (Adjusted to md=8 for desktop balance) */}
+        <Grid item xs={12} md={8}> 
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab + activeBetshopSub}
@@ -132,8 +148,8 @@ const OurSolutions = () => {
                   backgroundColor: "#fff",
                   borderRadius: "12px",
                   p: 3,
-                  boxShadow: "0px 3px 10px rgba(0,0,0,0.08)",
-                  height: "330px",
+                  boxShadow: "0px 6px 15px rgba(0,0,0,0.1)",
+                  height: { xs: 'auto', md: "330px" },
                   overflowY: "auto",
                   position: "relative",
                   "&::-webkit-scrollbar": {
@@ -157,6 +173,8 @@ const OurSolutions = () => {
                       flexWrap: "wrap",
                       gap: 1.5,
                       mb: 2,
+                      borderBottom: '1px solid #eee',
+                      pb: 2,
                     }}
                   >
                     {subTabs.map((btn) => (
@@ -174,15 +192,18 @@ const OurSolutions = () => {
                           borderColor: "#82d141",
                           textTransform: "none",
                           fontWeight: 600,
-                          borderRadius: "6px",
+                          borderRadius: "8px",
                           fontSize: "14px",
                           px: 3,
+                          py: 1,
+                          boxShadow: activeBetshopSub === btn ? '0 4px 6px rgba(130, 209, 65, 0.4)' : 'none',
                           "&:hover": {
                             backgroundColor:
                               activeBetshopSub === btn
                                 ? "#74c33c"
-                                : "#e8f7e4",
+                                : "#e8f7f4",
                             borderColor: "#74c33c",
+                            boxShadow: activeBetshopSub === btn ? '0 4px 8px rgba(130, 209, 65, 0.6)' : 'none',
                           },
                         }}
                       >

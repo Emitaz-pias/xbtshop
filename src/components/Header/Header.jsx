@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 
 const Header = () => {
   return (
-    <Box sx={{ position: 'relative'}}>
+    <Box  sx={{ position: 'relative',  maxWidth: '100vw', }}>
       <Navbar />
       <Box />
     </Box>
