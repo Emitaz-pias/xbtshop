@@ -44,7 +44,7 @@ const itemVariants = {
   }),
 };
 
-const WhoAgentsSection = () => {
+const WhoAgentsSection = ({ onAgentClick }) => {
   return (
     <Box
       sx={{
@@ -129,6 +129,7 @@ const WhoAgentsSection = () => {
 
           <Button
             variant="contained"
+            onClick={onAgentClick}
             sx={{
               mt: 4,
               backgroundColor: "#9be15d",

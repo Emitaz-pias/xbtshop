@@ -4,7 +4,7 @@ import { keyframes } from '@mui/system';
 import ball1 from '../../images/join_us_ball_one_1x.png';
 import ball2 from '../../images/join_us_ball_two_1x.png';
 import cardPhone from '../../images/join_us_phone_1x.png';
-import cardOnly from '../../images/join_us_card_1x.png';
+// import cardOnly from '../../images/join_us_card_1x.png';
 const float = keyframes`
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -17,7 +17,7 @@ const soccerBallMove = keyframes`
   100% { transform: translate(0, 0); }
 `;
 
-const FloatingCardSection = () => {
+const FloatingCardSection = ({ onAgentClick }) => {
   return (
     <Box
    
@@ -43,6 +43,7 @@ const FloatingCardSection = () => {
         </Typography>
         <Button
           variant="contained"
+          onClick={onAgentClick}
           sx={{
             bgcolor: '#0a2a66',
             color: 'white',

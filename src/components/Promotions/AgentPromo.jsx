@@ -89,7 +89,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   }
 }));
 
-const AgentPromo = () => {
+const AgentPromo = ({ onAgentClick }) => {
   const theme = useTheme();
 
   const becomeAgentItems = [
@@ -153,6 +153,7 @@ const AgentPromo = () => {
               <StyledButton 
                 variant="contained" 
                 size="large"
+                onClick={onAgentClick}
                 sx={{
                   background: 'linear-gradient(45deg, #ff6b35, #ff8c42)',
                   boxShadow: '0 8px 25px rgba(255, 107, 53, 0.3)',

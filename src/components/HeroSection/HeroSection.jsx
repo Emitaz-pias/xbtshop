@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, Stack, Modal } from "@mui/material";
+import { Box, Typography, Button, Stack, Modal, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import heroImg from "../../images/hero-player.png";
 import mobcash from "../../images/icon-mobileapp.svg";
 import web from "../../images/icon-webepos.svg";
@@ -18,7 +19,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <Box
+      <Box     
         sx={{
           maxWidth: "100%",
           minHeight: "90vh",
@@ -106,7 +107,7 @@ const HeroSection = () => {
           {/* --- FIXED: icons same size, no distortion --- */}
           <Stack
             direction="row"
-            spacing={1}
+            spacing={2}
             sx={{ mt: 5, justifyContent: "space-between", width: "100%" }}
           >
             {apps.map((item, i) => (
@@ -114,13 +115,19 @@ const HeroSection = () => {
                 key={i}
                 alignItems="center"
                 justifyContent="center"
-                spacing={1}
+                spacing={0.8}
                 sx={{
-                  borderRadius: "1em",
+                  borderRadius: "12px",
                   backgroundColor: "#fff",
-                  color: "blue",
-                  p: "0.6em",
+                  p: "0.8em 1em",
                   width: "33%",
+                  boxShadow: "0 4px 12px rgba(59, 164, 255, 0.15)",
+                  transition: "all 0.3s ease",
+                  cursor: "pointer",
+                  "&:hover": {
+                    boxShadow: "0 8px 20px rgba(59, 164, 255, 0.25)",
+                    transform: "translateY(-4px)",
+                  },
                 }}
               >
                 <Box
@@ -128,15 +135,15 @@ const HeroSection = () => {
                   src={item.img}
                   alt={item.label}
                   sx={{
-                    width: 32,
-                    height: 32,
+                    width: 36,
+                    height: 36,
                     objectFit: "contain",
                     filter:
                       "brightness(0) saturate(100%) invert(35%) sepia(50%) saturate(1000%) hue-rotate(190deg) brightness(90%) contrast(85%)",
                   }}
                 />
                 <Typography
-                  sx={{ fontSize: "14px", color: "#6b95ff", textAlign: "center" }}
+                  sx={{ fontSize: "12px", color: "#6b95ff", textAlign: "center", fontWeight: 900 }}
                 >
                   {item.label}
                 </Typography>
@@ -150,18 +157,61 @@ const HeroSection = () => {
       <Modal
         open={open}
         onClose={() => setOpen(false)}
+        sx={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          pt: { xs: 2, md: 8 }
+        }}
       >
         <Box
           sx={{
             width: "100%",
             maxWidth: 700,
             mx: "auto",
-            mt: 5,
-            p: 2,
+            backgroundColor: "#fff",
+            borderRadius: "16px",
             outline: "none",
+            position: "relative",
+            boxShadow: "0 20px 60px rgba(10, 26, 59, 0.3)",
+            border: "2px solid #0a1a3b",
+            overflow: "hidden",
+            animation: "slideUp 0.3s ease-out",
+            "@keyframes slideUp": {
+              "0%": {
+                opacity: 0,
+                transform: "translateY(30px)",
+              },
+              "100%": {
+                opacity: 1,
+                transform: "translateY(0)",
+              },
+            },
           }}
         >
-          <AgentFormSection />
+          {/* Close Button */}
+          <IconButton
+            onClick={() => setOpen(false)}
+            sx={{
+              position: "absolute",
+              right: 16,
+              top: 16,
+              backgroundColor: "#0a1a3b",
+              color: "#fff",
+              zIndex: 10,
+              "&:hover": {
+                backgroundColor: "#1a2a4b",
+              },
+            }}
+            size="small"
+          >
+            <CloseIcon />
+          </IconButton>
+
+          {/* Form Content */}
+          <Box sx={{ p: { xs: 2, md: 4 } }}>
+            <AgentFormSection />
+          </Box>
         </Box>
       </Modal>
     </>

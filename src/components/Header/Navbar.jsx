@@ -15,7 +15,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../images/logo.png";
 
-const Navbar = () => {
+const Navbar = ({ onAgentClick }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
@@ -51,6 +51,7 @@ const Navbar = () => {
         <Button
           fullWidth
           variant="contained"
+          onClick={onAgentClick}
           sx={{
             mt: 2,
             backgroundColor: "#59c12e",
@@ -111,6 +112,7 @@ const Navbar = () => {
 
           <Button
             variant="contained"
+            onClick={onAgentClick}
             sx={{
               backgroundColor: "#59c12e",
               color: "#fff",

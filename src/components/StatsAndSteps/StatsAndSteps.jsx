@@ -36,26 +36,46 @@ const StatsAndSteps = () => {
           boxShadow: "0 6px 20px rgba(0,0,0,0.08)",
         }}
       >
-        <Stack
+        <Stack 
           direction={{ xs: "column", sm: "row" }}
           justifyContent="space-around"
           alignItems="center"
-          spacing={{ xs: 4, sm: 2, md: 4 }}
+          spacing={{ xs: 3, sm: 2, md: 4 }}
         >
           {stats.map((item, i) => (
-            <Stack key={i} alignItems="center" spacing={1}>
-              {item.icon}
-              <Typography variant="h5" fontWeight={800} color="#0a1a3b">
-                {item.value}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="#3b4b68"
-                sx={{ textTransform: "uppercase", fontWeight: 500 }}
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              style={{ width: "100%" }}
+            >
+              <Paper
+                sx={{
+                  p: 3,
+                  borderRadius: 2,
+                  backgroundColor: "#fff",
+                  boxShadow: "0 4px 15px rgba(0,0,0,0.08)",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 1,
+                }}
               >
-                {item.label}
-              </Typography>
-            </Stack>
+                {item.icon}
+                <Typography variant="h5" fontWeight={800} color="#0a1a3b">
+                  {item.value}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="#3b4b68"
+                  sx={{ textTransform: "uppercase", fontWeight: 500 }}
+                >
+                  {item.label}
+                </Typography>
+              </Paper>
+            </motion.div>
           ))}
         </Stack>
       </Paper>
@@ -73,7 +93,7 @@ const StatsAndSteps = () => {
           direction={{ xs: "column", md: "row" }}
           justifyContent="center"
           alignItems="flex-start"
-          spacing={6}
+          spacing={4}
           sx={{
             maxWidth: 1100,
             mx: "auto",
@@ -111,65 +131,50 @@ const StatsAndSteps = () => {
           {/* RIGHT SIDE (Steps + vertical line) */}
           <Box flex={1} sx={{ position: "relative" }}>
             {/* Vertical line */}
-           <Stack spacing={4} sx={{ pl: 6, position: "relative" }}>
-  {steps.map((text, index) => (
+           <Stack spacing={4} sx={{ pl: { xs: 2, md: 6 }, position: "relative" }}>
+  {steps.map((s, i) => (
     <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
-      viewport={{ once: true, amount: 0.4 }}
-      style={{ position: "relative" }}
+      key={i}
+      initial={{ opacity: 0, x: 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.45, delay: i * 0.08 }}
     >
-      {/* Step Card */}
-      <Paper
-        elevation={1}
+      <Box
         sx={{
-          p: 2,
-          borderRadius: 2,
-          color: "#0a1a3b",
-          fontWeight: 500,
           display: "flex",
           alignItems: "center",
-          gap: 2,
-          backgroundColor: "#fff",
-          position: "relative",
+          mb: i === 0 ? { xs: 2.5, md: 3 } : { xs: 1.5, md: 2 },
+          mt: i === 1 ? { xs: 1, md: 2 } : 0,
         }}
       >
-        <Box
-          sx={{
-            width: 28,
-            height: 28,
-            borderRadius: "50%",
-            backgroundColor: "#3ba4ff",
-            color: "#fff",
-            fontWeight: 700,
-            fontSize: "0.9rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
-        >
-          {index + 1}
-        </Box>
-        {text}
-      </Paper>
+        {/* fixed-width number column so text aligns consistently */}
+        <Box sx={{ width: { xs: 60, md: 80 }, display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+          <Typography sx={{ color: "#0a1a3b", fontWeight: 800, fontSize: { xs: "1.2rem", md: "1.6rem" } }}>
+            {i + 1}
+          </Typography>
 
-      {/* Blue vertical line between steps */}
-      {index !== steps.length - 1 && (
-        <Box
-          sx={{
-            position: "absolute",
-            left: 27,
-            top: "100%",
-            height: 32,
-            width: "2px",
-            backgroundColor: "#3ba4ff",
-            mx: "auto",
-          }}
-        />
-      )}
+          {/* green connector centered under the number (absolute inside the same box) */}
+          <Box
+            sx={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+              top: { xs: "calc(100% + 4px)", md: "calc(85% + 4px)" },
+              width: i === steps.length - 1 ? 0 : (i < 2 ? 6 : 3),
+              height: i === steps.length - 1 ? 0 : (i < 2 ? { xs: 36, md: 56 } : { xs: 28, md: 44 }),
+              backgroundColor: "#0a1a3b",
+              borderRadius: 1,
+              zIndex: 2,
+            }}
+          />
+        </Box>
+
+        {/* text column — starts at the same x for every step */}
+        <Box sx={{ pl: { xs: 3, md: 4 }, flex: 1 }}>
+          <Typography sx={{ color: "#0a1a3b", fontWeight: 600, textAlign: "left" }}>{s}</Typography>
+        </Box>
+      </Box>
     </motion.div>
   ))}
 </Stack>

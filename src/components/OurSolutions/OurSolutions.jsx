@@ -31,7 +31,7 @@ const OurSolutions = () => {
     },
   };
 
-  const { title, icon, content, subTabs } = tabData[activeTab];
+  const { title, content, subTabs } = tabData[activeTab];
 
   const getDisplayedContent =
     activeTab === "betshop"
