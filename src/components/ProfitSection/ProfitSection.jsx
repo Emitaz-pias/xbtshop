@@ -7,7 +7,8 @@ import {
   BusinessCenter,
   StarOutline,
 } from "@mui/icons-material";
-
+import benifitPhone1x from '../../images/benefit_phone_1x.webp'
+import benifitMoney1x from '../../images/benefit_money_1x.webp'
 const points = [
   {
     icon: <WorkOutline sx={{ color: "#4cc45a", fontSize: 36 }} />,
@@ -98,26 +99,54 @@ const ProfitSection = () => {
           justifyContent: "center",
         }}
       >
+        {/* Phone image with a gentle floating animation */}
         <motion.img
-          src="/images/agent-phone.png"
+          src={benifitPhone1x}
           alt="Agent Phone"
           style={{
             width: "100%",
             maxWidth: 420,
             height: "auto",
+            zIndex: 1,
           }}
+          // entrance animation only; no continuous floating
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}
         />
 
-        {/* Blue badge overlay */}
+        {/* Animated money image that floats up from the phone */}
+        <motion.img
+          src={benifitMoney1x}
+          alt="Benefit Money"
+          style={{
+            position: "absolute",
+            // adjusted to sit visually inside the phone area above the blue badge
+            right: 70,
+            bottom: 40,
+            width: 180,
+            height: "auto",
+            zIndex: 4,
+            pointerEvents: "none",
+          }}
+          // keep the money animation moving from near the phone's top toward its bottom,
+          // but slower: set speed to 0.25x the previous (duration increased from 6s -> 24s)
+          initial={{ opacity: 1, y: -90, scale: 1 }}
+          // reduce downward travel by a further 25% (current delta 35px -> 26.25px -> ~26)
+          // so final position is ~-64 (from -90 + 26)
+          animate={{ y: [-90, -64] }}
+          // increase speed by another 10%: previous duration 21.8s -> ~19.8s
+          transition={{ duration: 19.8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", repeatDelay: 1.2 }}
+        />
+
+        {/* Blue badge overlay with its own floating animation */}
         <motion.div
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
+          // badge stays static after entrance; improved wrapping to prevent overflow
           style={{
             position: "absolute",
             bottom: -40,
@@ -132,10 +161,16 @@ const ProfitSection = () => {
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            padding: "15px",
+            padding: "14px",
+            boxSizing: "border-box",
             fontWeight: 600,
-            fontSize: "0.9rem",
-            lineHeight: 1.3,
+            fontSize: "0.76rem",
+            lineHeight: 1.05,
+            zIndex: 3,
+            overflow: "hidden",
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
           }}
         >
           OVER 50000 PEOPLE HAVE ALREADY BECOME 1XBET AGENTS.

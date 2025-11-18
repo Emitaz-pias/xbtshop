@@ -161,7 +161,8 @@ const StatsAndSteps = () => {
               left: "50%",
               transform: "translateX(-50%)",
               top: { xs: "calc(100% + 4px)", md: "calc(85% + 4px)" },
-              width: i === steps.length - 1 ? 0 : (i < 2 ? 6 : 3),
+              // make the vertical connector thinner between steps 1 and 2 (50% thinner)
+              width: i === steps.length - 1 ? 0 : 3,
               height: i === steps.length - 1 ? 0 : (i < 2 ? { xs: 36, md: 56 } : { xs: 28, md: 44 }),
               backgroundColor: "#0a1a3b",
               borderRadius: 1,
