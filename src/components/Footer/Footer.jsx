@@ -9,11 +9,11 @@ import {
 // --- Main Component ---
 const Footer = () => {
   const navItems = [
-    { title: 'About us', href: '#' },
-    { title: 'Working with us', href: '#' },
-    { title: 'Solutions', href: '#' },
-    { title: 'Contacts', href: '#' },
-    { title: 'Cookie Policy', href: '#' },
+    { title: 'About us', href: '#about-us' },
+    { title: 'Working with us', href: '#working-with-us' },
+    { title: 'Solutions', href: '#solutions' },
+    { title: 'Contacts', href: '#contacts' },
+    { title: 'Cookie Policy', href: '#cookie-policy' },
   ];
 
   return (

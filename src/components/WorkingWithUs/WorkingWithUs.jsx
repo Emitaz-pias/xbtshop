@@ -54,36 +54,52 @@ export default function WorkingWithUs() {
   const { title, description, steps, showImage } = tabData[activeTab];
 
   return (
-    <Box sx={{ background: "#f5f8fc", py: { xs: 6, md: 10 }, px: { xs: 2, md: 8 } }}>
+    <Box
+      id="working-with-us"
+      sx={{ background: "#f5f8fc", py: { xs: 6, md: 10 }, px: { xs: 2, md: 8 } }}
+    >
       <Typography
         variant="h4"
         sx={{ color: "#0d2a5a", fontWeight: 700, textAlign: "center", mb: 4 }}
       >
         Working with Us
       </Typography>
+{/* tabs */}
+{/* tabs */}
+<Box
+  sx={{
+    display: "flex",
+    justifyContent: { xs: "center", md: "center" },
+    gap: 2,
+    mb: 6,
+    flexWrap: { xs: "nowrap", md: "wrap" },
+    maxWidth: { md: 600 },
+    mx: { md: "auto" },
+  }}
+>
+  {tabOrder.map((t) => (
+    <Button
+      key={t}
+      onClick={() => setActiveTab(t)}
+      sx={{
+        px:1.8,
+        py: 0.1,
+        fontWeight: 700,
+        borderRadius: 2,
+        textTransform: "none",
+        border: "1.5px solid #2b65d9",
+        backgroundColor: activeTab === t ? "#2b65d9" : "#fff",
+        color: activeTab === t ? "#fff" : "#2b65d9",
+        "&:hover": { backgroundColor: activeTab === t ? "#244e9a" : "#e9f1ff" },
+        minWidth: { xs: "auto", md: 120 }, // mobile auto width, desktop fixed
+      }}
+    >
+      {t === "agent" ? "Agent" : t === "bookmaker" ? "Bookmaker" : "Betting shop"}
+    </Button>
+  ))}
+</Box>
 
-      {/* tabs */}
-      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 6, flexWrap: "wrap" }}>
-        {tabOrder.map((t) => (
-          <Button
-            key={t}
-            onClick={() => setActiveTab(t)}
-            sx={{
-              px: 3,
-              py: 0.8,
-              fontWeight: 700,
-              borderRadius: 2,
-              textTransform: "none",
-              border: "1.5px solid #2b65d9",
-              backgroundColor: activeTab === t ? "#2b65d9" : "#fff",
-              color: activeTab === t ? "#fff" : "#2b65d9",
-              "&:hover": { backgroundColor: activeTab === t ? "#244e9a" : "#e9f1ff" },
-            }}
-          >
-            {t === "agent" ? "Agent" : t === "bookmaker" ? "Bookmaker" : "Betting shop"}
-          </Button>
-        ))}
-      </Box>
+
 
       {/* main grid */}
       <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ maxWidth: 1200, mx: "auto" }}>

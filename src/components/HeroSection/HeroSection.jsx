@@ -36,7 +36,7 @@ const HeroSection = () => {
           color: "#fff",
         }}
       >
-        <Box sx={{ maxWidth: { xs: "100%", md: "550px" } }}>
+        <Box sx={{ maxWidth: { xs: "100%", md: "550px" }, width: { md: 550 }, minWidth: { md: 400 } }}>
           <Typography
             variant="h3"
             sx={{
@@ -67,8 +67,7 @@ const HeroSection = () => {
               fontSize: { xs: "0.95rem", sm: "1rem" },
             }}
           >
-            Join the agent program of 1xBet — the world leader in the betting
-            industry — and get a new source of income.
+           Join the 1xBet Asian Agent Program — one of the most trusted and fastest-growing betting platforms in Asia — and start earning high commissions every month. Become a verified 1xBet Agent, promote 1xBet services in your region, and unlock a stable income with unlimited growth potential. Whether you're new or experienced, the official 1xBet agent system makes it easy to manage players, track profits, and build your own business with full support from the 1xBet team.
           </Typography>
 
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
@@ -90,6 +89,7 @@ const HeroSection = () => {
 
             <Button
               variant="outlined"
+              href='#working-with-us'
               sx={{
                 borderColor: "#3ba4ff",
                 color: "#3ba4ff",
@@ -105,51 +105,36 @@ const HeroSection = () => {
           </Stack>
 
           {/* --- FIXED: icons same size, no distortion --- */}
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ mt: 5, justifyContent: "space-between", width: "100%" }}
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              flexDirection: "row",
+              gap: 2,
+              mt: 4,
+              justifyContent: "flex-start",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
           >
-            {apps.map((item, i) => (
-              <Stack
-                key={i}
-                alignItems="center"
-                justifyContent="center"
-                spacing={0.8}
+            {apps.map((app, idx) => (
+              <Button
+                key={app.label}
+                variant="contained"
                 sx={{
-                  borderRadius: "12px",
-                  backgroundColor: "#fff",
-                  p: "0.8em 1em",
-                  width: "33%",
-                  boxShadow: "0 4px 12px rgba(59, 164, 255, 0.15)",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer",
-                  "&:hover": {
-                    boxShadow: "0 8px 20px rgba(59, 164, 255, 0.25)",
-                    transform: "translateY(-4px)",
-                  },
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  minWidth: 120,
+                  mb: 0,
+                  zIndex: 2,
+                  position: "relative",
                 }}
               >
-                <Box
-                  component="img"
-                  src={item.img}
-                  alt={item.label}
-                  sx={{
-                    width: 36,
-                    height: 36,
-                    objectFit: "contain",
-                    filter:
-                      "brightness(0) saturate(100%) invert(35%) sepia(50%) saturate(1000%) hue-rotate(190deg) brightness(90%) contrast(85%)",
-                  }}
-                />
-                <Typography
-                  sx={{ fontSize: "12px", color: "#6b95ff", textAlign: "center", fontWeight: 900 }}
-                >
-                  {item.label}
-                </Typography>
-              </Stack>
+                <Box component="img" src={app.img} alt={app.label} sx={{ width: 24, height: 24 }} />
+                {app.label}
+              </Button>
             ))}
-          </Stack>
+          </Box>
         </Box>
       </Box>
 

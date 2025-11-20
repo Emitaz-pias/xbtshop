@@ -13,16 +13,14 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 // --- Scrolling Ticker Animation ---
 // Marquee animation keyframes
+// --- Scrolling Ticker Animation ---
 const tickerAnimation = {
   '@keyframes ticker': {
-    '0%': {
-      transform: 'translateX(100%)',
-    },
-    '100%': {
-      transform: 'translateX(-100%)',
-    },
+    '0%': { transform: 'translateX(0%)' },
+    '100%': { transform: 'translateX(-50%)' }, // move half because text is repeated
   },
 };
+
 
 // Ticker text content
 const tickerText =
@@ -68,34 +66,34 @@ const BusinessSection = () => {
   return (
     <Box sx={{ width: '100%', fontFamily: 'sans-serif' }}>
       {/* --- Green Scrolling Ticker --- */}
-      <Box
-        sx={{
-          backgroundColor: '#5cb85c', // Green color from image
-          color: 'white',
-          py: 2,
-          overflow: 'hidden', // Hide the text when it's off-screen
-          whiteSpace: 'nowrap', // Keep text on one line
-        }}
-      >
-        <Box
-          sx={{
-            ...tickerAnimation,
-            // Apply animation
-            animation: 'ticker 30s linear infinite',
-            display: 'inline-block',
-            pl: '100%', // Start off-screen to the right
-          }}
-        >
-          <Typography
-            variant="h6"
-            component="span"
-            sx={{ fontWeight: 'bold' }}
-          >
-            {/* Repeat text 2 times for a seamless loop */}
-            {tickerText.repeat(2)}
-          </Typography>
-        </Box>
-      </Box>
+     <Box
+  sx={{
+    backgroundColor: '#5cb85c',
+    color: 'white',
+    py: 2,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    position: 'relative',
+  }}
+>
+  <Box
+    sx={{
+      display: 'inline-block',
+      px: 1,
+      animation: 'ticker 20s linear infinite',
+      ...tickerAnimation,
+    }}
+  >
+    <Typography
+      variant="h6"
+      component="span"
+      sx={{ fontWeight: 'bold' }}
+    >
+      {tickerText.repeat(2)} {/* Repeat text to make seamless loop */}
+    </Typography>
+  </Box>
+</Box>
+
 
       {/* --- Blue Main Content Area --- */}
       <Box sx={{ backgroundColor: '#4a90e2', py: 6, px: 2 }}>

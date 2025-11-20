@@ -21,23 +21,29 @@ export default function AgentFormSection() {
   };
 
   return (
-    <Box
+    <Box id="agent-form-section"
       sx={{
         width: "100%",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: { xs: '60vh', md: 'auto' },
+        py: { xs: 4, md: 0 },
       }}
     >
       <Box
         sx={{
-          width: "100%",
+          width: { xs: '100%', md: '70%' },
           backgroundColor: "transparent",
         }}
       >
-        <Typography sx={{ fontSize: 24, fontWeight: 700, mb: 3, color: "#0a1a3b" }}>
+        <Typography sx={{ fontSize: 24, fontWeight: 700, mb: 3, color: "#0a1a3b", textAlign: 'center' }}>
           Become an Agent
         </Typography>
 
         {/* Row 1: Country + Region */}
-        <Box sx={{ display: "flex", gap: 2, mb: 2.5 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, mb: 2.5 }}>
           <TextField 
             select 
             fullWidth 
@@ -103,7 +109,7 @@ export default function AgentFormSection() {
         </Box>
 
         {/* Row 2: City + First Name */}
-        <Box sx={{ display: "flex", gap: 2, mb: 2.5 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, mb: 2.5 }}>
           <TextField 
             select 
             fullWidth 
@@ -165,7 +171,7 @@ export default function AgentFormSection() {
         </Box>
 
         {/* Row 3: Email + Phone */}
-        <Box sx={{ display: "flex", gap: 2, mb: 2.5 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, mb: 2.5 }}>
           <TextField 
             fullWidth 
             size="small" 
@@ -289,26 +295,6 @@ export default function AgentFormSection() {
             }
           }}
         />
-
-        {/* reCAPTCHA Placeholder */}
-        <Box
-          sx={{
-            width: "100%",
-            height: 60,
-            backgroundColor: "#F9F9F9",
-            border: "1.5px solid #0a1a3b",
-            borderRadius: 1,
-            mb: 3,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: 12,
-            color: "#0a1a3b",
-            fontWeight: 500
-          }}
-        >
-          reCAPTCHA
-        </Box>
 
         <Button
           fullWidth

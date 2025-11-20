@@ -30,10 +30,10 @@ const Home = () => {
       {/* <FeatureSection /> */}
       <AdvantagesSection />
       <WhoAgentsSection onAgentClick={() => setOpen(true)} />
-      <WorkingWithUs/>
+      <WorkingWithUs id="working-with-us" />
       <FloatingCardSection onAgentClick={() => setOpen(true)} />
-      <OurSolutions/>
-      <Why1xBet/>
+      <OurSolutions id="solutions" />
+      <Why1xBet id="why1xbet" />
       <FAQ/>
       <BusinessSection/>
       <AgentIntroSection/>
@@ -95,7 +95,7 @@ const Home = () => {
           </IconButton>
 
           {/* Form Content */}
-          <Box sx={{ p: { xs: 2, md: 4 } }}>
+          <Box id="agent-form-section" sx={{ p: { xs: 2, md: 4 } }}>
             <AgentFormSection />
           </Box>
         </Box>

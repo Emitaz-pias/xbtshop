@@ -7,7 +7,7 @@ import moneyImg from "../../images/betShop_about_money_1x.png"; // flying cash n
 
 const Why1xBet = () => {
   return (
-    <Box
+    <Box id="why1xbet"
       sx={{
         backgroundColor: "#fff",
         py: { xs: 4, md: 8 },

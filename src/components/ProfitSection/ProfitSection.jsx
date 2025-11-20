@@ -43,6 +43,8 @@ const ProfitSection = () => {
         alignItems: "center",
         justifyContent: "space-between",
         gap: 6,
+        maxWidth: { md: 1200 },
+        mx: { md: "auto" },
       }}
     >
       {/* Left Content */}
@@ -137,7 +139,7 @@ const ProfitSection = () => {
           // so final position is ~-64 (from -90 + 26)
           animate={{ y: [-90, -64] }}
           // increase speed by another 10%: previous duration 21.8s -> ~19.8s
-          transition={{ duration: 19.8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", repeatDelay: 1.2 }}
+          transition={{ duration: 25.8, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", repeatDelay: 1.0 }}
         />
 
         {/* Blue badge overlay with its own floating animation */}
