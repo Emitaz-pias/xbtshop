@@ -17,6 +17,7 @@ import FAQ from '../components/FAQ/FAQ';
 import BusinessSection from '../components/BusinessSection/BusinessSection';
 import AgentFormSection from '../components/AgentFormSection/AgentFormSection';
 import AgentIntroSection from '../components/AgentIntroSection/AgentIntroSection';
+import AgentSection from '../components/AgentSection/AgentSection';
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -36,6 +37,7 @@ const Home = () => {
       <Why1xBet id="why1xbet" />
       <FAQ/>
       <BusinessSection/>
+      <AgentSection/>
       <AgentIntroSection/>
       <Footer />
 

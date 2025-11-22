@@ -52,6 +52,30 @@ const Footer = () => {
               1XBET
             </Typography>
           </Box>
+          {/* --- 4. SEO keyword links (internal anchors) --- */}
+          <Box sx={{ mt: 2, textAlign: 'center', width: '100%' }}>
+            <Typography variant="caption" display="block" sx={{ color: '#b0bec5', mb: 0.5 }}>
+              Quick links:
+            </Typography>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
+              {[
+                '1xbetAgent',
+                '1xbet e-wallet agent',
+                '1xbet agent Bangladesh',
+                '1xbet agent india',
+                '1xbet agent pakistan',
+                '1xbet agent nepal',
+                '1xbet agent saudi arab',
+                '1xbet officail agent',
+                '1xbet agent login',
+                '1xbet asian agent programme'
+              ].map((k) => (
+                <Box key={k} component="a" href="#agent-form-section" title={k} sx={{ color: '#b0bec5', textDecoration: 'none', fontSize: 12 }}>
+                  {k}
+                </Box>
+              ))}
+            </Box>
+          </Box>
 
           {/* --- 2. Nav Links --- */}
           <Box

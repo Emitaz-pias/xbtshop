@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Box, TextField, Button, MenuItem, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, TextField, Button, MenuItem, Typography, InputAdornment } from "@mui/material";
+import countriesData from "./countriesData.json";
 
 export default function AgentFormSection() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,10 @@ export default function AgentFormSection() {
     method: "method",
     message: ""
   });
+  const [countries, setCountries] = useState([]);
+  const [regions, setRegions] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [phoneCode, setPhoneCode] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -19,6 +24,27 @@ export default function AgentFormSection() {
       [e.target.name]: e.target.value
     });
   };
+
+  useEffect(() => {
+    // load countries from JSON
+    setCountries(countriesData);
+  }, []);
+
+  useEffect(() => {
+    // when selected country changes, update regions/cities and phone code
+    const country = countries.find((c) => c.country_name === formData.country);
+    if (country) {
+      setRegions(country.divisions_or_regions || []);
+      setCities(country.major_cities || []);
+      setPhoneCode(country.phone_code || "");
+      // reset region & city selectors and phone value
+      setFormData((prev) => ({ ...prev, region: "region", city: "city", phone: "" }));
+    } else {
+      setRegions([]);
+      setCities([]);
+      setPhoneCode("");
+    }
+  }, [formData.country, countries]);
 
   return (
     <Box id="agent-form-section"
@@ -52,6 +78,7 @@ export default function AgentFormSection() {
             value={formData.country}
             onChange={handleChange}
             variant="outlined"
+           
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
@@ -71,9 +98,12 @@ export default function AgentFormSection() {
             }}
           >
             <MenuItem value="country" sx={{ color: "rgba(10, 26, 59, 0.7)" }}>Country</MenuItem>
-            <MenuItem value="bd">Bangladesh</MenuItem>
-            <MenuItem value="in">India</MenuItem>
-            <MenuItem value="pk">Pakistan</MenuItem>
+            {countries.map((c) => (
+              <MenuItem key={c.iso_code} value={c.country_name} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box component="img" src={c.flag_url} alt={c.iso_code} sx={{ width: 22, height: 14, objectFit: 'cover' }} />
+                {`    ${c.country_name}`}
+              </MenuItem>
+            ))}
           </TextField>
 
           <TextField 
@@ -83,7 +113,7 @@ export default function AgentFormSection() {
             name="region"
             value={formData.region}
             onChange={handleChange}
-            variant="outlined"
+            variant="outlined"          
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
@@ -103,8 +133,9 @@ export default function AgentFormSection() {
             }}
           >
             <MenuItem value="region" sx={{ color: "rgba(10, 26, 59, 0.7)" }}>Region</MenuItem>
-            <MenuItem value="dhaka">Dhaka</MenuItem>
-            <MenuItem value="chittagong">Chittagong</MenuItem>
+            {regions.length > 0 ? regions.map((r) => (
+              <MenuItem key={r} value={r}>{r}</MenuItem>
+            )) : <MenuItem value="none" disabled>No regions</MenuItem>}
           </TextField>
         </Box>
 
@@ -137,8 +168,9 @@ export default function AgentFormSection() {
             }}
           >
             <MenuItem value="city" sx={{ color: "rgba(10, 26, 59, 0.7)" }}>City</MenuItem>
-            <MenuItem value="dhaka_city">Dhaka City</MenuItem>
-            <MenuItem value="ctg_city">Chittagong City</MenuItem>
+            {cities.length > 0 ? cities.map((ct) => (
+              <MenuItem key={ct} value={ct}>{ct}</MenuItem>
+            )) : <MenuItem value="none" disabled>No cities</MenuItem>}
           </TextField>
 
           <TextField 
@@ -178,7 +210,7 @@ export default function AgentFormSection() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="Email"
+          placeholder="Email"
             type="email"
             variant="outlined"
             sx={{
@@ -207,8 +239,13 @@ export default function AgentFormSection() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="Phone"
+             placeholder={phoneCode ? "" : "Phone"}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start" sx={{ mr: 0 }}>{phoneCode}</InputAdornment>
+              )
+            }}
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
@@ -239,6 +276,7 @@ export default function AgentFormSection() {
           value={formData.method}
           onChange={handleChange}
           variant="outlined"
+          
           sx={{ 
             mb: 2.5,
             "& .MuiOutlinedInput-root": {
@@ -259,9 +297,10 @@ export default function AgentFormSection() {
           }}
         >
           <MenuItem value="method" sx={{ color: "rgba(10, 26, 59, 0.7)" }}>Method of Contact</MenuItem>
+           <MenuItem value="telegram">Telegram</MenuItem>
           <MenuItem value="email">Email</MenuItem>
-          <MenuItem value="phone">Phone</MenuItem>
-          <MenuItem value="telegram">Telegram</MenuItem>
+          <MenuItem value="phone">Whatsapp</MenuItem>
+         
         </TextField>
 
         {/* Row 5: Your Message */}
