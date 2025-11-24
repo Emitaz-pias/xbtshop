@@ -67,7 +67,7 @@ const HeroSection = () => {
               fontSize: { xs: "0.95rem", sm: "1rem" },
             }}
           >
-           Join the 1xBet Asian Agent Program — one of the most trusted and fastest-growing betting platforms in Asia — and start earning high commissions every month. Become a verified 1xBet Agent, promote 1xBet services in your region, and unlock a stable income with unlimited growth potential. Whether you're new or experienced, the official 1xBet agent system makes it easy to manage players, track profits, and build your own business with full support from the 1xBet team.
+           Join the 1xBet  Agent Program — one of the most trusted and fastest-growing betting platforms in The World.start earning high commissions every month. Become a verified 1xBet Agent, promote 1xBet services in your region, and unlock a stable income with unlimited growth potential. Whether you're new or experienced, the official 1xBet agent system makes it easy to manage players, track profits, and build your own business with full support from the 1xBet team.
           </Typography>
 
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>

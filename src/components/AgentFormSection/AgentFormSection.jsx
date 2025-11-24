@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, TextField, Button, MenuItem, Typography, InputAdornment } from "@mui/material";
+import { Box, TextField, Button, MenuItem, Typography, InputAdornment, Snackbar, Alert } from "@mui/material";
 import countriesData from "./countriesData.json";
 
+const SHEETDB_URL = "https://sheetdb.io/api/v1/87niarzqgrbfj";
+
 export default function AgentFormSection() {
-  const [formData, setFormData] = useState({
+  const initial = {
     country: "country",
     region: "region",
     city: "city",
@@ -12,11 +14,15 @@ export default function AgentFormSection() {
     phone: "",
     method: "method",
     message: ""
-  });
+  };
+
+  const [formData, setFormData] = useState(initial);
   const [countries, setCountries] = useState([]);
   const [regions, setRegions] = useState([]);
   const [cities, setCities] = useState([]);
   const [phoneCode, setPhoneCode] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [openSnack, setOpenSnack] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -46,8 +52,49 @@ export default function AgentFormSection() {
     }
   }, [formData.country, countries]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // minimal submission: send the current formData to SheetDB
+    setSubmitting(true);
+    try {
+      const payload = {
+        country: formData.country,
+        region: formData.region,
+        city: formData.city,
+        firstName: formData.firstName,
+        email: formData.email,
+        phone: (phoneCode || "") + formData.phone,
+        method: formData.method,
+        message: formData.message,
+      };
+
+      const res = await fetch(SHEETDB_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: [payload] }),
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("SheetDB error:", res.status, text);
+        throw new Error("Submit failed");
+      }
+
+      setOpenSnack(true);
+      // reset form values to initial after successful submit
+      setFormData(initial);
+    } catch (err) {
+      console.error(err);
+      alert("Submit failed — please try again later.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <Box id="agent-form-section"
+      component="form"
+      onSubmit={handleSubmit}
       sx={{
         width: "100%",
         display: 'flex',
@@ -338,6 +385,8 @@ export default function AgentFormSection() {
         <Button
           fullWidth
           variant="contained"
+          type="submit"
+          disabled={submitting}
           sx={{
             backgroundColor: "#00853a",
             fontWeight: 700,
@@ -347,8 +396,14 @@ export default function AgentFormSection() {
             "&:hover": { backgroundColor: "#1a2a4b" },
           }}
         >
-          SEND
+          {submitting ? "SENDING..." : "SEND"}
         </Button>
+
+        <Snackbar open={openSnack} autoHideDuration={4000} onClose={() => setOpenSnack(false)}>
+          <Alert severity="success" sx={{ width: '100%' }} onClose={() => setOpenSnack(false)}>
+            Request sent — we'll contact you shortly.
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );
