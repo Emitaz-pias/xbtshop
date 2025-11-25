@@ -98,7 +98,7 @@ const Footer = () => {
           })()}
 
           {/* --- 2. Nav Links --- */}
-          <Box
+          {/* <Box
             component="nav"
             sx={{
               display: 'flex',
@@ -127,7 +127,7 @@ const Footer = () => {
                 {item.title}
               </Link>
             ))}
-          </Box>
+          </Box> */}
 
           {/* --- 3. Copyright Info --- */}
           <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
