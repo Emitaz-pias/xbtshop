@@ -73,32 +73,32 @@ const Footer = () => {
               ? { sx: { mt: 2, textAlign: 'center', width: '100%' } }
               : { className: 'visually-hidden' };
 
-            return (
-              <Box {...containerProps}>
-                {SHOW_KEYWORD_LINKS && (
-                  <Typography variant="caption" display="block" sx={{ color: '#b0bec5', mb: 0.5 }}>
-                    Quick links:
-                  </Typography>
-                )}
-                <Box sx={{ display: SHOW_KEYWORD_LINKS ? 'flex' : 'block', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
-                  {keywords.map((k) => (
-                    <Box
-                      key={k}
-                      component="a"
-                      href="#agent-form-section"
-                      title={k}
-                      sx={SHOW_KEYWORD_LINKS ? { color: '#b0bec5', textDecoration: 'none', fontSize: 12 } : {}}
-                    >
-                      {k}
-                    </Box>
-                  ))}
-                </Box>
-              </Box>
-            );
+            // return (
+            //   // <Box {...containerProps}>
+            //   //   {SHOW_KEYWORD_LINKS && (
+            //   //     <Typography variant="caption" display="block" sx={{ color: '#b0bec5', mb: 0.5 }}>
+            //   //       Quick links:
+            //   //     </Typography>
+            //   //   )}
+            //   //   <Box sx={{ display: SHOW_KEYWORD_LINKS ? 'flex' : 'block', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
+            //   //     {keywords.map((k) => (
+            //   //       <Box
+            //   //         key={k}
+            //   //         component="a"
+            //   //         href="#agent-form-section"
+            //   //         title={k}
+            //   //         sx={SHOW_KEYWORD_LINKS ? { color: '#b0bec5', textDecoration: 'none', fontSize: 12 } : {}}
+            //   //       >
+            //   //         {k }
+            //   //       </Box>
+            //   //     ))}
+            //   //   </Box>
+            //   // </Box>
+            // );
           })()}
 
           {/* --- 2. Nav Links --- */}
-          {/* <Box
+          <Box
             component="nav"
             sx={{
               display: 'flex',
@@ -118,6 +118,8 @@ const Footer = () => {
                   color: 'white',
                   textDecoration: 'none',
                   fontWeight: '500',
+                  mx: 1,
+                  display: 'inline-block',
                   '&:hover': {
                     textDecoration: 'underline',
                     color: '#b0bec5',
@@ -127,7 +129,7 @@ const Footer = () => {
                 {item.title}
               </Link>
             ))}
-          </Box> */}
+          </Box>
 
           {/* --- 3. Copyright Info --- */}
           <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
