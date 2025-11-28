@@ -23,7 +23,7 @@ const HeroSection = () => {
       <Box     
         sx={{
           maxWidth: "100%",
-          minHeight: "90vh",
+          minHeight: "80vh",
           backgroundColor: "#0a1a3b",
           backgroundImage: { xs: "none", md: `url(${heroImg})` },
           backgroundRepeat: "no-repeat",
@@ -33,7 +33,7 @@ const HeroSection = () => {
           alignItems: "center",
           justifyContent: "flex-start",
           px: { xs: 1, md: 10 },
-          py: { xs: 8, md: 0 },
+          py: { xs: 6, md: 0 },
           color: "#fff",
         }}
       >

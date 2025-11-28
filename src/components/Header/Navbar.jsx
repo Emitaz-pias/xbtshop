@@ -16,6 +16,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../../images/logo.png";
 import { Link as ScrollLink } from "react-scroll";
+import CookieModal from '../CookieModal/CookieModal';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Navbar = ({ onAgentClick }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -26,8 +28,10 @@ const Navbar = ({ onAgentClick }) => {
     { title: "Working with Us", href: "working-with-us" },
     { title: "Solutions", href: "solutions" },
     { title: "Contacts", href: "agent-form-section" },
-    { title: "Cookie Policy", href: "cookie-policy", external: true },
+    { title: "Cookie Policy", href: "/cookie-policy", external: true },
   ];
+
+  const [cookieOpen, setCookieOpen] = useState(false);
 
   const drawer = (
     <Box sx={{ width: 250, p: 2 }}>
@@ -59,14 +63,29 @@ const Navbar = ({ onAgentClick }) => {
                 />
               </ScrollLink>
             ) : (
-              <ListItemText
-                primary={item.title}
-                primaryTypographyProps={{
-                  fontSize: "0.95rem",
-                  color: "#113264",
-                  fontWeight: 500,
-                }}
-              />
+              item.href === '/cookie-policy' ? (
+                <ListItemText
+                  primary={item.title}
+                  primaryTypographyProps={{
+                    fontSize: "0.95rem",
+                    color: "#113264",
+                    fontWeight: 500,
+                  }}
+                  onClick={() => { setCookieOpen(true); setMobileOpen(false); }}
+                  sx={{ cursor: 'pointer' }}
+                />
+              ) : (
+                <RouterLink to={item.href} style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setMobileOpen(false)}>
+                  <ListItemText
+                    primary={item.title}
+                    primaryTypographyProps={{
+                      fontSize: "0.95rem",
+                      color: "#113264",
+                      fontWeight: 500,
+                    }}
+                  />
+                </RouterLink>
+              )
             )}
           </ListItem>
         ))}
@@ -119,18 +138,36 @@ const Navbar = ({ onAgentClick }) => {
                 </Typography>
               </ScrollLink>
             ) : (
-              <Typography
-                key={index}
-                variant="body2"
-                sx={{
-                  color: "#d0d5e2",
-                  cursor: "pointer",
-                  "&:hover": { color: "#3ba4ff" },
-                }}
-                onClick={() => (window.location.href = "/cookie-policy")}
-              >
-                {item.title}
-              </Typography>
+              item.href === '/cookie-policy' ? (
+                <Typography
+                  key={index}
+                  variant="body2"
+                  sx={{
+                    color: "#d0d5e2",
+                    cursor: "pointer",
+                    textDecoration: 'none',
+                    '&:hover': { color: "#3ba4ff" },
+                  }}
+                  onClick={() => setCookieOpen(true)}
+                >
+                  {item.title}
+                </Typography>
+              ) : (
+                <Typography
+                  key={index}
+                  component={RouterLink}
+                  to={item.href}
+                  variant="body2"
+                  sx={{
+                    color: "#d0d5e2",
+                    cursor: "pointer",
+                    textDecoration: 'none',
+                    '&:hover': { color: "#3ba4ff" },
+                  }}
+                >
+                  {item.title}
+                </Typography>
+              )
             )
           )}
 
@@ -163,6 +200,7 @@ const Navbar = ({ onAgentClick }) => {
       <Drawer anchor="right" open={mobileOpen} onClose={handleDrawerToggle}>
         {drawer}
       </Drawer>
+      <CookieModal open={cookieOpen} onClose={() => setCookieOpen(false)} />
     </AppBar>
   );
 };
