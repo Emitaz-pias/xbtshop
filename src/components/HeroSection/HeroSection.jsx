@@ -6,7 +6,7 @@ import mobcash from "../../images/icon-mobileapp.svg";
 import web from "../../images/icon-webepos.svg";
 import shop from "../../images/icon-betshop.svg";
 import AgentFormSection from "../AgentFormSection/AgentFormSection";
-import { Link } from "react-router-dom";
+import { Link as ScrollLink } from 'react-scroll';
 
 const HeroSection = () => {
 
@@ -88,23 +88,22 @@ const HeroSection = () => {
               Become an Agent
             </Button>
 
-            <Button
-              variant="outlined"
-              href='#working-with-us'
-              sx={{
-                borderColor: "#3ba4ff",
-                color: "#3ba4ff",
-                fontWeight: 600,
-                px: 3,
-                py: 1.2,
-                width: { xs: "100%", sm: "auto" },
-                "&:hover": { backgroundColor: "#3ba4ff", color: "#fff" },
-              }}
-            >
-              <Link to="/workingWithUs" style={{ textDecoration: "none", color: "inherit" }}>
+            <ScrollLink to="working-with-us" smooth={true} duration={500} offset={-70} style={{ textDecoration: 'none' }}>
+              <Button
+                variant="outlined"
+                sx={{
+                  borderColor: "#3ba4ff",
+                  color: "#3ba4ff",
+                  fontWeight: 600,
+                  px: 3,
+                  py: 1.2,
+                  width: { xs: "100%", sm: "auto" },
+                  "&:hover": { backgroundColor: "#3ba4ff", color: "#fff" },
+                }}
+              >
                 Working with us
-              </Link>
-            </Button>
+              </Button>
+            </ScrollLink>
           </Stack>
 
           {/* --- FIXED: icons same size, no distortion --- */}
