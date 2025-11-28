@@ -9,11 +9,11 @@ import {
 // --- Main Component ---
 const Footer = () => {
   const navItems = [
-    { title: 'About us', href: '#' },
-    { title: 'Working with us', href: '#' },
-    { title: 'Solutions', href: '#' },
-    { title: 'Contacts', href: '#' },
-    { title: 'Cookie Policy', href: '#' },
+    { title: 'About us', href: '#about-us' },
+    { title: 'Working with us', href: '#working-with-us' },
+    { title: 'Solutions', href: '#solutions' },
+    { title: 'Contacts', href: '#contacts' },
+    { title: 'Cookie Policy', href: '#cookie-policy' },
   ];
 
   return (
@@ -52,6 +52,50 @@ const Footer = () => {
               1XBET
             </Typography>
           </Box>
+          {/* --- 4. SEO keyword links (internal anchors) --- */}
+          {/* Keyword links: keep them in DOM for SEO. Toggle visibility via SHOW_KEYWORD_LINKS. */}
+          {(() => {
+            const SHOW_KEYWORD_LINKS = false; // set true to display links visibly
+            const keywords = [
+              '1xbetAgent',
+              '1xbet e-wallet agent',
+              '1xbet agent Bangladesh',
+              '1xbet agent india',
+              '1xbet agent pakistan',
+              '1xbet agent nepal',
+              '1xbet agent saudi arab',
+              '1xbet officail agent',
+              '1xbet agent login',
+              '1xbet asian agent programme'
+            ];
+
+            const containerProps = SHOW_KEYWORD_LINKS
+              ? { sx: { mt: 2, textAlign: 'center', width: '100%' } }
+              : { className: 'visually-hidden' };
+
+            // return (
+            //   // <Box {...containerProps}>
+            //   //   {SHOW_KEYWORD_LINKS && (
+            //   //     <Typography variant="caption" display="block" sx={{ color: '#b0bec5', mb: 0.5 }}>
+            //   //       Quick links:
+            //   //     </Typography>
+            //   //   )}
+            //   //   <Box sx={{ display: SHOW_KEYWORD_LINKS ? 'flex' : 'block', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
+            //   //     {keywords.map((k) => (
+            //   //       <Box
+            //   //         key={k}
+            //   //         component="a"
+            //   //         href="#agent-form-section"
+            //   //         title={k}
+            //   //         sx={SHOW_KEYWORD_LINKS ? { color: '#b0bec5', textDecoration: 'none', fontSize: 12 } : {}}
+            //   //       >
+            //   //         {k }
+            //   //       </Box>
+            //   //     ))}
+            //   //   </Box>
+            //   // </Box>
+            // );
+          })()}
 
           {/* --- 2. Nav Links --- */}
           <Box
@@ -74,6 +118,8 @@ const Footer = () => {
                   color: 'white',
                   textDecoration: 'none',
                   fontWeight: '500',
+                  mx: 1,
+                  display: 'inline-block',
                   '&:hover': {
                     textDecoration: 'underline',
                     color: '#b0bec5',

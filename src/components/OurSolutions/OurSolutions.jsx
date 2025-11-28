@@ -39,7 +39,7 @@ const OurSolutions = () => {
       : content;
 
   return (
-    <Box sx={{ backgroundColor: "#f5f7fa",py: 8, px: { xs: 2, md: 10 } }}>
+    <Box id="solutions" sx={{ backgroundColor: "#f5f7fa",py: 8, px: { xs: 2, md: 10 } }}>
       <Typography
         variant="h4"
         sx={{
@@ -63,19 +63,18 @@ const OurSolutions = () => {
         {/* LEFT MENU (Mobile: Single Row, Desktop: Vertical Column) */}
         <Grid
           item
-          xs={12} // Mobile: Full width
-          md={4} // Desktop Fix: Increased width for 'BETSHOP' text to show completely
+          xs={12}
+          md={4}
           sx={{
             display: "flex",
-            // Mobile: Row | Desktop: Column
             flexDirection: { xs: "row", md: "column" },
-            // Mobile Fix: Use space-between to evenly distribute 3 items
             justifyContent: { xs: "space-between", md: "flex-start" },
             alignItems: { xs: "center", md: "flex-start" },
-            // Mobile Fix: Force nowrap to keep items in one row and remove horizontal spacing/gap
             flexWrap: { xs: 'nowrap', md: 'wrap' },
-            gap: { xs: 0, md: 3 }, // Remove gap on mobile, keep it on desktop
-            pb: { xs: 4, md: 0 }, // Add bottom padding on mobile to separate menu from content
+            gap: { xs: 0, md: 3 },
+            pb: { xs: 4, md: 0 },
+            maxWidth: { md: 320 },
+            minWidth: { md: 220 },
           }}
         >
           {Object.keys(tabData).map((tab) => {

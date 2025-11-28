@@ -17,6 +17,7 @@ import FAQ from '../components/FAQ/FAQ';
 import BusinessSection from '../components/BusinessSection/BusinessSection';
 import AgentFormSection from '../components/AgentFormSection/AgentFormSection';
 import AgentIntroSection from '../components/AgentIntroSection/AgentIntroSection';
+import AgentSection from '../components/AgentSection/AgentSection';
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -30,12 +31,13 @@ const Home = () => {
       {/* <FeatureSection /> */}
       <AdvantagesSection />
       <WhoAgentsSection onAgentClick={() => setOpen(true)} />
-      <WorkingWithUs/>
+      <WorkingWithUs id="working-with-us" />
       <FloatingCardSection onAgentClick={() => setOpen(true)} />
-      <OurSolutions/>
-      <Why1xBet/>
+      <OurSolutions id="solutions" />
+      <Why1xBet id="why1xbet" />
       <FAQ/>
       <BusinessSection/>
+      <AgentSection/>
       <AgentIntroSection/>
       <Footer />
 
@@ -95,7 +97,7 @@ const Home = () => {
           </IconButton>
 
           {/* Form Content */}
-          <Box sx={{ p: { xs: 2, md: 4 } }}>
+          <Box id="agent-form-section" sx={{ p: { xs: 2, md: 4 } }}>
             <AgentFormSection />
           </Box>
         </Box>

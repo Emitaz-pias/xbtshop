@@ -27,6 +27,7 @@ const StatsAndSteps = () => {
         elevation={3}
         sx={{
           width: { xs: "92%", md: "80%" },
+          maxWidth: { md: 1200 },
           mx: "auto",
           borderRadius: "20px",
           backgroundColor: "#fff",
@@ -132,52 +133,92 @@ const StatsAndSteps = () => {
           <Box flex={1} sx={{ position: "relative" }}>
             {/* Vertical line */}
            <Stack spacing={4} sx={{ pl: { xs: 2, md: 6 }, position: "relative" }}>
-  {steps.map((s, i) => (
-    <motion.div
-      key={i}
-      initial={{ opacity: 0, x: 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.45, delay: i * 0.08 }}
-    >
+ {steps.map((s, i) => (
+  <motion.div
+    key={i}
+    initial={{ opacity: 0, x: 30 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, amount: 0.5 }}
+    transition={{ duration: 0.45, delay: i * 0.08 }}
+  >
+    <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+
+      {/* MOBILE VERSION — EXACT LIKE SCREENSHOT */}
       <Box
         sx={{
-          display: "flex",
+          display: { xs: "flex", md: "none" },
           alignItems: "center",
-          mb: i === 0 ? { xs: 2.5, md: 3 } : { xs: 1.5, md: 2 },
-          mt: i === 1 ? { xs: 1, md: 2 } : 0,
+          gap: 1.5,
         }}
       >
-        {/* fixed-width number column so text aligns consistently */}
-        <Box sx={{ width: { xs: 60, md: 80 }, display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
-          <Typography sx={{ color: "#0a1a3b", fontWeight: 800, fontSize: { xs: "1.2rem", md: "1.6rem" } }}>
-            {i + 1}
-          </Typography>
+        <Typography
+          sx={{
+            color: "#2b65d9",
+            fontWeight: 800,
+            fontSize: "1.6rem",
+            lineHeight: 1,
+          }}
+        >
+          {String(i + 1).padStart(2, "0")}
+        </Typography>
 
-          {/* green connector centered under the number (absolute inside the same box) */}
-          <Box
-            sx={{
-              position: "absolute",
-              left: "50%",
-              transform: "translateX(-50%)",
-              top: { xs: "calc(100% + 4px)", md: "calc(85% + 4px)" },
-              // make the vertical connector thinner between steps 1 and 2 (50% thinner)
-              width: i === steps.length - 1 ? 0 : 3,
-              height: i === steps.length - 1 ? 0 : (i < 2 ? { xs: 36, md: 56 } : { xs: 28, md: 44 }),
-              backgroundColor: "#0a1a3b",
-              borderRadius: 1,
-              zIndex: 2,
-            }}
-          />
-        </Box>
+        {/* green line */}
+        <Box
+          sx={{
+            width: "2px",
+            height: "28px",
+            backgroundColor: "#7be052",
+            borderRadius: 1,
+          }}
+        />
 
-        {/* text column — starts at the same x for every step */}
-        <Box sx={{ pl: { xs: 3, md: 4 }, flex: 1 }}>
-          <Typography sx={{ color: "#0a1a3b", fontWeight: 600, textAlign: "left" }}>{s}</Typography>
-        </Box>
+        <Typography
+          sx={{
+            color: "#0d2750",
+            fontWeight: 600,
+            fontSize: "1.1rem",
+            textAlign: "left",
+          }}
+        >
+          {s}
+        </Typography>
       </Box>
-    </motion.div>
-  ))}
+
+      {/* DESKTOP VERSION (unchanged old design) */}
+      <Box
+        sx={{
+          display: { xs: "none", md: "flex" },
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        <Typography
+          sx={{
+            color: "#2b65d9",
+            fontWeight: 800,
+            fontSize: "1.6rem",
+          }}
+        >
+          {String(i + 1).padStart(2, "0")}
+        </Typography>
+
+        <Box
+          sx={{
+            width: "2px",
+            height: "34px",
+            backgroundColor: "#7be052",
+            borderRadius: 1,
+          }}
+        />
+
+        <Typography sx={{ color: "#0d2750", fontWeight: 600 }}>
+          {s}
+        </Typography>
+      </Box>
+    </Box>
+  </motion.div>
+))}
+
 </Stack>
 
            

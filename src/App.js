@@ -8,8 +8,7 @@ import { AppProviders } from './context';
 // import AnimatedBackground from './components/Common/AnimatedBackground';
 // Pages
 import Home from './pages/Home';
-import WorkingWithUs from './components/WorkingWithUs/WorkingWithUs';
-
+import CookiePolicy from './pages/CookiePolicy';
 
 function App() {
   return (
@@ -17,8 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:workingWithUs" element={<WorkingWithUs />} />
-          {/* <Route path="/promotions" element={<Promotions />} /> */}
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
         </Routes>
       </Router>
     </AppProviders>
