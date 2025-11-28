@@ -49,7 +49,7 @@ const tabOrder = ["agent", "bookmaker", "betting"];
 // small animation variants
 const fadeInUp = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
-export default function WorkingWithUs() {
+export default function WorkingWithUs({ onAgentClick }) {
   const [activeTab, setActiveTab] = useState("agent");
   const { title, description, steps, showImage } = tabData[activeTab];
 
@@ -124,6 +124,7 @@ export default function WorkingWithUs() {
 
               <Button
                 variant="contained"
+                onClick={onAgentClick}
                 sx={{
                   backgroundColor: "#7be052",
                   color: "#0d2750",

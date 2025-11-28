@@ -5,15 +5,21 @@ import {
   Box,
   Link,
 } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
+import logo from "../../images/logo.png";
+import CookieModal from '../CookieModal/CookieModal';
+import { useState } from 'react';
 
 // --- Main Component ---
 const Footer = () => {
+  const [cookieOpen, setCookieOpen] = useState(false);
   const navItems = [
-    { title: 'About us', href: '#about-us' },
+    { title: 'About us', href: '#why1xbet' },
     { title: 'Working with us', href: '#working-with-us' },
     { title: 'Solutions', href: '#solutions' },
-    { title: 'Contacts', href: '#contacts' },
-    { title: 'Cookie Policy', href: '#cookie-policy' },
+    { title: 'Contacts', href: '#agent-form-section' },
+    { title: 'Cookie Policy', href: '/cookie-policy' },
   ];
 
   return (
@@ -41,21 +47,15 @@ const Footer = () => {
         >
           {/* --- 1. Logo --- */}
           <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: 'bold',
-                color: '#4FC3F7', // Light blue color for logo
-                cursor: 'pointer',
-              }}
-            >
-              1XBET
-            </Typography>
+            <Box component="img" src={logo} alt="1xBet" sx={{ height: 28, cursor: 'pointer' }} />
           </Box>
           {/* --- 4. SEO keyword links (internal anchors) --- */}
           {/* Keyword links: keep them in DOM for SEO. Toggle visibility via SHOW_KEYWORD_LINKS. */}
+          {/* SEO keyword links - hidden by default. To enable, set SHOW_KEYWORD_LINKS=true below */}
           {(() => {
             const SHOW_KEYWORD_LINKS = false; // set true to display links visibly
+            if (!SHOW_KEYWORD_LINKS) return null;
+
             const keywords = [
               '1xbetAgent',
               '1xbet e-wallet agent',
@@ -69,32 +69,26 @@ const Footer = () => {
               '1xbet asian agent programme'
             ];
 
-            const containerProps = SHOW_KEYWORD_LINKS
-              ? { sx: { mt: 2, textAlign: 'center', width: '100%' } }
-              : { className: 'visually-hidden' };
-
-            // return (
-            //   // <Box {...containerProps}>
-            //   //   {SHOW_KEYWORD_LINKS && (
-            //   //     <Typography variant="caption" display="block" sx={{ color: '#b0bec5', mb: 0.5 }}>
-            //   //       Quick links:
-            //   //     </Typography>
-            //   //   )}
-            //   //   <Box sx={{ display: SHOW_KEYWORD_LINKS ? 'flex' : 'block', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
-            //   //     {keywords.map((k) => (
-            //   //       <Box
-            //   //         key={k}
-            //   //         component="a"
-            //   //         href="#agent-form-section"
-            //   //         title={k}
-            //   //         sx={SHOW_KEYWORD_LINKS ? { color: '#b0bec5', textDecoration: 'none', fontSize: 12 } : {}}
-            //   //       >
-            //   //         {k }
-            //   //       </Box>
-            //   //     ))}
-            //   //   </Box>
-            //   // </Box>
-            // );
+            return (
+              <Box sx={{ mt: 2, textAlign: 'center', width: '100%' }}>
+                <Typography variant="caption" display="block" sx={{ color: '#b0bec5', mb: 0.5 }}>
+                  Quick links:
+                </Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
+                  {keywords.map((k) => (
+                    <Box
+                      key={k}
+                      component="a"
+                      href="#agent-form-section"
+                      title={k}
+                      sx={{ color: '#b0bec5', textDecoration: 'none', fontSize: 12 }}
+                    >
+                      {k}
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            );
           })()}
 
           {/* --- 2. Nav Links --- */}
@@ -109,27 +103,81 @@ const Footer = () => {
               gap: { xs: 1.5, sm: 3 }, // Spacing between links
             }}
           >
-            {navItems.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                variant="body1"
-                sx={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  fontWeight: '500',
-                  mx: 1,
-                  display: 'inline-block',
-                  '&:hover': {
-                    textDecoration: 'underline',
-                    color: '#b0bec5',
-                  },
-                }}
-              >
-                {item.title}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              // Handle cookie-policy modal first so it doesn't navigate away
+              if (item.href === '/cookie-policy') {
+                return (
+                  <Typography key={item.title} variant="body1" sx={{ color: 'white', fontWeight: 500, mx: 1, display: 'inline-block', cursor: 'pointer', '&:hover': { color: '#b0bec5' } }} onClick={() => setCookieOpen(true)}>
+                    {item.title}
+                  </Typography>
+                );
+              }
+
+              if (item.href && item.href.startsWith('/')) {
+                return (
+                  <Link
+                    key={item.title}
+                    component={RouterLink}
+                    to={item.href}
+                    variant="body1"
+                    sx={{
+                      color: 'white',
+                      textDecoration: 'none',
+                      fontWeight: '500',
+                      mx: 1,
+                      display: 'inline-block',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                        color: '#b0bec5',
+                      },
+                    }}
+                  >
+                    {item.title}
+                  </Link>
+                );
+              }
+
+              if (item.href === '/cookie-policy') {
+                return (
+                  <Typography key={item.title} variant="body1" sx={{ color: 'white', fontWeight: 500, mx: 1, display: 'inline-block', cursor: 'pointer', '&:hover': { color: '#b0bec5' } }} onClick={() => setCookieOpen(true)}>
+                    {item.title}
+                  </Typography>
+                );
+              }
+
+              if (item.href && item.href.startsWith('#')) {
+                return (
+                  <ScrollLink key={item.title} to={item.href.replace('#', '')} smooth={true} duration={500} offset={-70} style={{ cursor: 'pointer', textDecoration: 'none', color: 'white', margin: '0 8px' }}>
+                    <Typography variant="body1" sx={{ color: 'white', fontWeight: 500, mx: 1, display: 'inline-block', '&:hover': { color: '#b0bec5' } }}>{item.title}</Typography>
+                  </ScrollLink>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  variant="body1"
+                  sx={{
+                    color: 'white',
+                    textDecoration: 'none',
+                    fontWeight: '500',
+                    mx: 1,
+                    display: 'inline-block',
+                    '&:hover': {
+                      textDecoration: 'underline',
+                      color: '#b0bec5',
+                    },
+                  }}
+                >
+                  {item.title}
+                </Link>
+              );
+            })}
           </Box>
+
+          {/* Cookie policy modal (opened by footer's Cookie Policy link) */}
+          <CookieModal open={cookieOpen} onClose={() => setCookieOpen(false)} />
 
           {/* --- 3. Copyright Info --- */}
           <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>

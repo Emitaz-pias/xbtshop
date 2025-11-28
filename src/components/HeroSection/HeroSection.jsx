@@ -6,6 +6,7 @@ import mobcash from "../../images/icon-mobileapp.svg";
 import web from "../../images/icon-webepos.svg";
 import shop from "../../images/icon-betshop.svg";
 import AgentFormSection from "../AgentFormSection/AgentFormSection";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
 
@@ -22,7 +23,7 @@ const HeroSection = () => {
       <Box     
         sx={{
           maxWidth: "100%",
-          minHeight: "90vh",
+          minHeight: "80vh",
           backgroundColor: "#0a1a3b",
           backgroundImage: { xs: "none", md: `url(${heroImg})` },
           backgroundRepeat: "no-repeat",
@@ -32,7 +33,7 @@ const HeroSection = () => {
           alignItems: "center",
           justifyContent: "flex-start",
           px: { xs: 1, md: 10 },
-          py: { xs: 8, md: 0 },
+          py: { xs: 6, md: 0 },
           color: "#fff",
         }}
       >
@@ -100,7 +101,9 @@ const HeroSection = () => {
                 "&:hover": { backgroundColor: "#3ba4ff", color: "#fff" },
               }}
             >
-              How does it work?
+              <Link to="/workingWithUs" style={{ textDecoration: "none", color: "inherit" }}>
+                Working with us
+              </Link>
             </Button>
           </Stack>
 

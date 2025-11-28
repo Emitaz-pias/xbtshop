@@ -31,7 +31,7 @@ const Home = () => {
       {/* <FeatureSection /> */}
       <AdvantagesSection />
       <WhoAgentsSection onAgentClick={() => setOpen(true)} />
-      <WorkingWithUs id="working-with-us" />
+      <WorkingWithUs id="working-with-us" onAgentClick={() => setOpen(true)} />
       <FloatingCardSection onAgentClick={() => setOpen(true)} />
       <OurSolutions id="solutions" />
       <Why1xBet id="why1xbet" />
