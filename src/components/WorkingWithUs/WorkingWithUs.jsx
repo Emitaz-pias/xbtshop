@@ -54,7 +54,7 @@ export default function WorkingWithUs() {
   const { title, description, steps, showImage } = tabData[activeTab];
 
   return (
-    <Box sx={{ background: "#f5f8fc", py: { xs: 6, md: 10 }, px: { xs: 2, md: 8 } }}>
+    <Box id='workingWithUs' sx={{ background: "#f5f8fc", py: { xs: 6, md: 10 }, px: { xs: 2, md: 8 } }}>
       <Typography
         variant="h4"
         sx={{ color: "#0d2a5a", fontWeight: 700, textAlign: "center", mb: 4 }}

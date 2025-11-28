@@ -8,6 +8,7 @@ import { AppProviders } from './context';
 // import AnimatedBackground from './components/Common/AnimatedBackground';
 // Pages
 import Home from './pages/Home';
+import WorkingWithUs from './components/WorkingWithUs/WorkingWithUs';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/:workingWithUs" element={<WorkingWithUs />} />
           {/* <Route path="/promotions" element={<Promotions />} /> */}
         </Routes>
       </Router>

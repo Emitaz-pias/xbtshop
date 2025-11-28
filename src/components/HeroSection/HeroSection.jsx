@@ -6,6 +6,7 @@ import mobcash from "../../images/icon-mobileapp.svg";
 import web from "../../images/icon-webepos.svg";
 import shop from "../../images/icon-betshop.svg";
 import AgentFormSection from "../AgentFormSection/AgentFormSection";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
 
@@ -67,8 +68,7 @@ const HeroSection = () => {
               fontSize: { xs: "0.95rem", sm: "1rem" },
             }}
           >
-            Join the agent program of 1xBet — the world leader in the betting
-            industry — and get a new source of income.
+        Join the 1xBet Asian Agent Program — one of the most trusted and fastest-growing betting platforms in Asia — and start earning high commissions every month. Become a verified 1xBet Agent, promote 1xBet services in your region, and unlock a stable income with unlimited growth potential. Whether you're new or experienced, the official 1xBet agent system makes it easy to manage players, track profits, and build your own business with full support from the 1xBet team.
           </Typography>
 
           <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
@@ -100,7 +100,9 @@ const HeroSection = () => {
                 "&:hover": { backgroundColor: "#3ba4ff", color: "#fff" },
               }}
             >
-              How does it work?
+              <Link to="/workingWithUs" style={{ textDecoration: "none", color: "inherit" }}>
+                Working with us
+              </Link>
             </Button>
           </Stack>
 
