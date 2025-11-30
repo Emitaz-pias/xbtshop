@@ -66,7 +66,7 @@ const Footer = () => {
               '1xbet agent saudi arab',
               '1xbet officail agent',
               '1xbet agent login',
-              '1xbet asian agent programme'
+              '1xbet agent programme'
             ];
 
             return (
